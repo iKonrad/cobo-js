@@ -1,0 +1,23 @@
+{
+  "presets": [
+    "react",
+    ["env", {
+      "targets": {
+        "node": true
+      },
+      "plugins": [
+        "transform-decorators-legacy",
+        ["transform-imports", {
+          "redux-form": {
+            "transform": "redux-form/es/${member}",
+            "preventFullImport": true
+          },
+          "reactstrap": {
+            "transform": "reactstrap/lib/${member}",
+            "preventFullImport": true
+          }
+        }]
+      ]
+    }]
+  ]
+}

@@ -1,0 +1,24 @@
+@keyframes placeHolderShimmer{
+  0%{
+    background-position: -400px 0
+  }
+  100%{
+    background-position: 400px 0
+  }
+}
+
+@mixin loadingAnimation {
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: $gray-200;
+  background: linear-gradient(to right, $gray-200 10%, $gray-300 25%, $gray-200 40%);
+  background-size: 800px 104px;
+  position: relative;
+}
+
+.loadingAnimation {
+  @include loadingAnimation();
+}

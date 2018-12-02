@@ -1,0 +1,14 @@
+.template {
+  padding: 20px;
+  height: 100%;
+
+  .templateBody {
+    height: 100%;
+
+    h1, h2, h3, h4, h5, h6 {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}

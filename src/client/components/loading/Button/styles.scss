@@ -1,0 +1,12 @@
+@import 'src/client/scss/shared';
+
+.loadingBtn {
+  @include loadingAnimation();
+  padding: $btn-padding-y $btn-padding-x;
+  margin: 8px 0;
+  height: $input-height-lg;
+  border-radius: $input-border-radius-lg;
+  .inline {
+    display: inline-block;
+  }
+}

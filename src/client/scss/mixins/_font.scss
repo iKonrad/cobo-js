@@ -1,0 +1,45 @@
+@mixin FontNunito() {
+  font-family: Nunito, sans-serif;
+}
+
+@mixin FontRubik() {
+  font-family: Rubik, sans-serif;
+}
+
+@mixin font-size-responsive($sm, $md, $lg) {
+  font-size: $sm;
+
+  @include media-breakpoint-up(md) {
+    font-size: $md;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: $lg;
+  }
+}
+
+@mixin h1 {
+  @include font-size-responsive(24px, 26px, 28px);
+}
+
+@mixin h2 {
+  @include font-size-responsive(22px, 24px, 26px);
+}
+
+@mixin h3 {
+  @include font-size-responsive(22px, 22px, 24px);
+}
+
+@mixin h4 {
+  @include font-size-responsive(20px, 22px, 22px);
+}
+
+@mixin h5 {
+  @include font-size-responsive(18px, 20px, 20px);
+}
+
+@mixin h6 {
+  @include font-size-responsive(16px, 18px, 18px);
+}
+
+

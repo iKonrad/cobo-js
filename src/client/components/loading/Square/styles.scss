@@ -1,0 +1,12 @@
+@import 'src/client/scss/shared';
+
+.square {
+  border-radius: 5px;
+  margin: 5px 0;
+
+  &.inlineBlock {
+    display: inline-block;;
+  }
+
+  @include loadingAnimation();
+}

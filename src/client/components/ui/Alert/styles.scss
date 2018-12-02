@@ -1,0 +1,32 @@
+@import 'src/client/scss/shared';
+
+.alert {
+  display: block;
+  padding: 15px;
+  border-radius: 4px;
+
+  .alertTitle {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .alertBody {
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  &.success {
+    background-color: $success;
+
+    .alertTitle, .alertBody {
+      color: white;
+    }
+  }
+
+  &.danger {
+    background-color: $danger;
+
+    .alertTitle, .alertBody {
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import 'src/client/scss/shared';
+
+.content {
+  &.expanded {
+    margin-left: $menu-width-expanded;
+  }
+}
+
+.templateDefault {
+  padding: 20px;
+  height: 100%;
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .templateBody {
+    h1, h2, h3, h4, h5, h6 {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &.noPadding {
+    .templateBody {
+      padding: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .content {
+    margin-left: $menu-width;
+  }
+  .templateDefault {
+    .container {
+      padding: $navbar-padding-y $navbar-padding-x;
+    }
+  }
+}

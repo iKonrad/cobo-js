@@ -1,0 +1,19 @@
+@import 'src/client/scss/shared';
+
+.home {
+}
+
+@include media-breakpoint-up(lg) {
+  .home {
+    flex-direction: row;
+    .main {
+      flex: 1;
+      margin-right: $grid-gutter-width / 2;
+    }
+    .sidebar {
+      flex: 0 0 320px;
+      margin-left: $grid-gutter-width / 2;
+      margin-top: 0;
+    }
+  }
+}

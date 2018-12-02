@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,300i,600,600i,800&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500,700&subset=latin-ext');
+
+@import 'variables';
+
+
+// Bootstrap stuff
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+
+// Utilities
+@import "~bootstrap/scss/utilities/text";
+@import "~bootstrap/scss/utilities/clearfix";
+@import "~bootstrap/scss/utilities/spacing";
+
+// Mixins
+@import 'mixins/font';
+
+// Custom global components
+@import 'components/navigation';
+@import 'components/typography';
+@import 'components/form';
+@import "components/image";
+@import "components/btn";
+
+html {
+  font-size: 16px;
+  @include FontRubik();
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  @include FontRubik();
+  background-color: #FAFAFA;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

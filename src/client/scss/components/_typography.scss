@@ -1,0 +1,48 @@
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: $gray-900;
+}
+
+
+h1, h2 {
+  margin: 30px 0 15px;
+}
+
+h3, h4, h5 {
+  margin: 20px 0 10px;
+}
+
+h1, .h1 {
+  @include h1();
+}
+
+h2, .h2 {
+  @include h2();
+}
+
+h3, .h3 {
+  @include h3();
+}
+
+h4, .h4 {
+  @include h4();
+}
+
+h5, .h5 {
+  @include h5();
+}
+
+h6, .h6 {
+  @include h6();
+}
+
+.subtitle {
+  @extend .text-muted;
+  font-size: 13px;
+  font-weight: 400;
+}

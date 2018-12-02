@@ -1,0 +1,39 @@
+@import 'src/client/scss/shared';
+
+.card {
+  overflow: hidden;
+  border-radius: $border-radius;
+  background-color: white;
+  border: 1px solid $border-color;
+
+  .cardBody {
+    padding: $grid-gutter-width;
+  }
+
+  .cardHeader {
+    background-color: $gray-100;
+    padding: 15px;
+    width: 100%;
+  }
+
+  .cardBreadcrumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .cardBreadcrumbsItem {
+      padding: 0 0.5rem;
+
+      .icon {
+        font-size: 18px;
+        color: $gray-300;
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
+      .label {
+        font-size: 14px;
+        color: $gray-300;
+        display: inline-block;
+      }
+    }
+  }
+}

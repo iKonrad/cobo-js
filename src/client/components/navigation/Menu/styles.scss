@@ -1,0 +1,84 @@
+@import 'src/client/scss/shared';
+
+$menu-animation: all 0.15s ease-in-out;
+
+.wrapper {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  width: $menu-width;
+  z-index: 299;
+  transition: $menu-animation;
+  overflow: hidden;
+  white-space: nowrap;
+  display: none;
+  .menu {
+    padding-top: $navbar-height + 10px;
+    width: 100%;
+    background: $primary-dark;
+    color: white;
+    height: 100%;
+
+    .separator {
+      margin: 10px 0;
+      border-bottom: solid 1px rgba(white, 0.05);
+    }
+
+    .option {
+      padding: 10px 17px;
+      display: block;
+      .icon {
+        color: white;
+        font-size: 18px;
+      }
+      .label {
+        opacity: 0;
+        color: white;
+        font-size: 14px;
+        margin-left: 8px;
+        width: $menu-width-expanded - 70px;
+        transition: $menu-animation;
+        display: inline-block;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  &.expanded {
+    width: $menu-width-expanded;
+    .menu {
+      .option {
+        .icon {
+
+        }
+        .label {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.showMenuMobile {
+    display: block;
+    width: $menu-width-expanded;
+    .menu {
+      .option {
+        .icon {
+
+        }
+        .label {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .wrapper {
+    display: block;
+  }
+}

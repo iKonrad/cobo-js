@@ -1,0 +1,55 @@
+.form-group {
+  label {
+    font-weight: 500;
+    color: $input-color;
+    text-transform: uppercase;
+    margin: 0;
+    transition: $transition-base;
+    font-size: 14px;
+  }
+
+  .form-control {
+    font-weight: 500;
+    border: 2px solid $input-color;
+    color: $gray-800;
+  }
+
+  &:not(.form-group-invalid) {
+    &:hover {
+      label {
+        color: darken($input-color, 7%);
+      }
+      .form-control {
+        border: 2px solid darken($input-color, 7%);
+      }
+    }
+
+    .form-control {
+      &:focus, &:active {
+        box-shadow: none;
+        border-color: darken($gray-500, 7%);
+      }
+    }
+  }
+
+
+  &-invalid {
+    label {
+      color: $danger;
+    }
+    .form-control {
+      border-color: $danger;
+      color: $danger;
+    }
+  }
+
+  .invalid-feedback {
+    font-weight: 500;
+  }
+}
+
+form {
+  button[type="submit"] {
+    margin-top: 25px;
+  }
+}
