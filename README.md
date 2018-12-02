@@ -1,4 +1,7 @@
-# Cobo.js
+[![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
+
+![Logo](/static/public/cobo-js-logo.png)
+
 
 **Co**mplete **Bo**ilerplate for building isomorphic react application
 

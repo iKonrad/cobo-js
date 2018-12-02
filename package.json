@@ -85,6 +85,8 @@
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.1",
     "webpack": "^4.15.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-chunk-hash": "^0.6.0",
