@@ -7,6 +7,7 @@ const root = path.join(__dirname, '../..');
 module.exports = {
   root,
   src: path.join(root, 'src'),
+  client: path.join(root, 'src', 'client'),
   static: path.join(root, 'static'),
   dist: path.join(root, 'dist'),
   public: path.join(root, 'dist', 'public'),
@@ -23,5 +24,6 @@ module.exports = {
   utils: path.join(root, 'src', 'client', 'utils'),
   settings: path.join(root, 'settings'),
   components: path.join(root, 'src', 'client', 'components'),
+  types: path.join(root, 'src', 'client', 'types'),
   templates: path.join(root, 'src', 'client', 'templates'),
-}
+};

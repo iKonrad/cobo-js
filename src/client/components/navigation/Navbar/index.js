@@ -11,8 +11,7 @@ import {
   NavItem,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { showMobileMenu, hideMobileMenu } from 'state/actions/App'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { showMobileMenu, hideMobileMenu } from 'state/actions/App';
 
 
 @withRouter
@@ -83,13 +82,13 @@ class Navbar extends React.Component {
             {
               showMenuButton ?
               <div className="navbar-menu-toggler" onClick={this.toggleMainMenu}>
-                <FontAwesomeIcon icon={['fas', 'bars']} className="navbar-menu-toggler-icon" />
+                Menu
               </div> :
                 <div className="navbar-menu-toggler-mock" />
             }
             <div className="navbar-brand">Cobo.js</div>
             <div className="navbar-toggler" onClick={this.toggleMobileMenu}>
-              <FontAwesomeIcon icon={['fas', 'user-circle']} className="navbar-toggler-icon" />
+              User
             </div>
             <Collapse navbar isOpen={this.state.mobileMenuOpen}>
               <Nav className="ml-auto" navbar>

@@ -9,7 +9,7 @@ import html from './html';
 import stats from 'exported/modules.json';
 import { renderRoutes } from 'react-router-config';
 import Routes from 'routes';
-import App from 'src/client/App.js';
+import App from 'src/client/App.tsx';
 
 const renderComponentToString = (ctx, store, context, initialScripts = [], initialStyles = []) => {
 

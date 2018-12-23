@@ -4,7 +4,7 @@
  * @param value
  * @param days
  */
-const setCookie = (name, value, days) => {
+const setCookie = (name: string, value: string, days?: number): string => {
   let expires = '';
   if (days) {
     const date = new Date();
@@ -23,7 +23,7 @@ const setCookie = (name, value, days) => {
  * @param name
  * @returns {*}
  */
-const getCookieForString = (cookieString, name) => {
+const getCookieForString = (cookieString: string, name: string): string|boolean => {
   const nameEQ = `${name}=`;
   if (cookieString) {
     const ca = cookieString.split(';');
@@ -32,9 +32,9 @@ const getCookieForString = (cookieString, name) => {
       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
-    return null;
+    return false;
   }
-  return null;
+  return false;
 };
 
 /**
@@ -42,13 +42,13 @@ const getCookieForString = (cookieString, name) => {
  * @param name
  * @returns {*}
  */
-const getCookie = name => getCookieForString(document.cookie, name);
+const getCookie = (name:string): string|boolean => getCookieForString(document.cookie, name);
 
 /**
  * Helper function that removes a cookie for a given name
  * @param name
  */
-const eraseCookie = name => {
+const eraseCookie = (name:string) => {
   const date = new Date();
   document.cookie = `${name}=''; expires=${date.toUTCString()};path=/;`;
 };
@@ -59,4 +59,3 @@ export default {
   getCookieForString,
   eraseCookie,
 };
-

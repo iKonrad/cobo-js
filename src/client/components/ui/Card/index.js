@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from './styles.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Card = (props) => {
   return (
@@ -38,7 +37,6 @@ export const CardBreadcrumbs = (props) => {
 export const CardBreadcrumbItem = ({icon, label}) => {
   return (
     <div className={css.cardBreadcrumbsItem}>
-      <FontAwesomeIcon icon={icon} className={css.icon} transform="down-2" />
       <div className={css.label}>
         {label}
       </div>

@@ -9,7 +9,7 @@ const EntryChunksPlugin = require('./plugins/chunksPlugin');
 module.exports = function (isProduction) {
   const clientConfig = {
     // Tell webpack the root file of our server application
-    entry: './src/client/index.js',
+    entry: './src/client/index.tsx',
 
     // Tell webpack where to put the output file that is generated
     output: {

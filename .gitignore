@@ -35,6 +35,7 @@ dist
 .idea
 
 # Settings file
+settings/index.ts
 settings/index.js
 
 ecosystem.config.js

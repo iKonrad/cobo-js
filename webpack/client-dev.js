@@ -1,9 +1,10 @@
 const webpack = require('webpack');
+const merge = require('webpack-merge');
+const createMiniExtractPlugin = require('mini-css-extract-plugin');
 const createCss = require('./common/css');
 const clientConfig = require('./common/client');
-const merge = require('webpack-merge');
-const createMiniExtractPlugin = require("mini-css-extract-plugin");
 const Common = require('./common/common');
+
 const extractCSS = new createMiniExtractPlugin({
   filename: 'css/style.css',
   chunkFileName: 'css/[id].chunk.css',
@@ -37,8 +38,8 @@ const clientDevConfig = {
   optimization: {
     splitChunks: {
       minSize: 1000000,
-    }
-  }
+    },
+  },
 };
 
 module.exports = merge(clientConfig(false), clientDevConfig);

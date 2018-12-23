@@ -1,31 +1,31 @@
 import settings from 'settings';
 
 // Import redux specific functions
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, Store } from 'redux';
 
-import { middleware as thunkMiddleware } from 'redux-saga-thunk'
+import { middleware as thunkMiddleware } from 'redux-saga-thunk';
 
 // Import Middlewares
 import createSagaMiddleware from 'redux-saga';
 
-import loggerMiddleware from 'redux-logger'
+import loggerMiddleware from 'redux-logger';
 
 import reducers from 'state/reducers';
 
 import rootSaga from 'sagas';
+import { State } from './types';
 
 const sagaRunner = createSagaMiddleware();
 
 // Create store for the client
-const createClientStore = (initialState = {}) => {
-
+const createClientStore = (initialState: State) => {
   const middlewares = [
     thunkMiddleware,
     sagaRunner,
   ];
 
   if (settings.ENV !== 'production') {
-    middlewares.push(loggerMiddleware)
+    middlewares.push(loggerMiddleware);
   }
 
   const store = createStore(
@@ -33,16 +33,13 @@ const createClientStore = (initialState = {}) => {
     initialState,
     compose(
       applyMiddleware(
-        ...middlewares
+        ...middlewares,
       ),
-      (!SERVER && typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
-    )
+      (!SERVER && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? (window as any).__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+    ),
   );
   sagaRunner.run(rootSaga);
   return store;
-}
+};
 
 export default createClientStore;
-
-
-

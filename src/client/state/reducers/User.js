@@ -1,12 +1,11 @@
 
-import * as Constants from 'state/constants/User';
+import Constants from 'state/constants/User';
 
 export const defaultState = {
   authenticated: false,
   sessionToken: null,
   data: null,
-  users: [],
-}
+};
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -14,19 +13,19 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         authenticated: true,
-        sessionToken: action.payload.sessionToken
+        sessionToken: action.payload.sessionToken,
       };
     }
     case Constants.FETCH_USER_DATA_NOT_LOGGED_IN:
     case Constants.FETCH_USER_DATA_FAILURE:
     case Constants.AUTHENTICATE_FAILURE: {
-    return {
-      ...state,
-      authenticated: false,
-      sessionToken: null,
-      data: null,
-    };
-  }
+      return {
+        ...state,
+        authenticated: false,
+        sessionToken: null,
+        data: null,
+      };
+    }
     case Constants.FETCH_USER_DATA_SUCCESS: {
       return {
         ...state,
@@ -35,13 +34,13 @@ export default (state = defaultState, action) => {
       };
     }
     case Constants.FETCH_USERS_SUCCESS: {
-      const newState = {...state};
+      const newState = { ...state };
       newState.users = action.payload;
       return newState;
     }
 
     case Constants.FETCH_USERS_FAILURE: {
-      const newState ={ ...state };
+      const newState = { ...state };
       newState.users = defaultState.users;
       return newState;
     }
@@ -52,6 +51,7 @@ export default (state = defaultState, action) => {
       newState.data = null;
       return newState;
     }
+    default:
+      return state;
   }
-  return state;
-}
+};

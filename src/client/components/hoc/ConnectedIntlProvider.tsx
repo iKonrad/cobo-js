@@ -1,14 +1,16 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import pl from 'react-intl/locale-data/pl';
+import { AppState } from 'types';
 
-@withRouter
-@connect(state => ({ app: state.app }))
-export default class ConnectedIntlProvider extends React.PureComponent {
+interface ProviderProps {
+  app: AppState,
+}
+
+class ConnectedIntlProvider extends React.PureComponent<ProviderProps, {}> {
   constructor(props) {
     super(props);
     addLocaleData([
@@ -43,11 +45,14 @@ export default class ConnectedIntlProvider extends React.PureComponent {
 
     // Render a regular IntlProvider component
     return (
-      <IntlProvider {...this.props} locale='pl-PL' defaultLocale="en" messages={app.translations} >
-        <div className={`locale-body locale-pl-PL`}>
+      <IntlProvider {...this.props} locale="pl-PL" defaultLocale="en" messages={app.translations}>
+        <div className="locale-body locale-pl-PL">
           {children}
         </div>
       </IntlProvider>
     );
   }
 }
+
+const WrappedConnectedIntlProvider = connect(state => ({ app: state.app }))(ConnectedIntlProvider);
+export default withRouter(WrappedConnectedIntlProvider);
