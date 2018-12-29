@@ -1,11 +1,19 @@
 {
   "presets": [
+    "es2015",
+    "stage-0",
     "react",
     ["env", {
       "targets": {
-        "node": true
+        "node": "current"
       },
       "plugins": [
+        [
+          "transform-runtime", {
+          "polyfill": true,
+          "regenerator": true
+        }
+        ],
         "transform-decorators-legacy",
         ["transform-imports", {
           "redux-form": {

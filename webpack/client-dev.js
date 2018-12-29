@@ -1,3 +1,5 @@
+import babelLoader from './common/babel-loader';
+
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const createMiniExtractPlugin = require('mini-css-extract-plugin');
@@ -15,10 +17,14 @@ const css = createCss(false);
 const clientDevConfig = {
   // Tell webpack if we're on development or production environment
   mode: 'development',
+  // Watch for file changes
+  watch: true,
   module: {
     rules: [
       // CSS loaders
       ...css.getDevLoaders(createMiniExtractPlugin.loader, true),
+      { test: /\.tsx?$/, use: [{ loader: 'awesome-typescript-loader' }] },
+      babelLoader(false),
     ],
   },
   plugins: [

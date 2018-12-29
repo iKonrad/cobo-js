@@ -1,11 +1,8 @@
 const webpack = require('webpack');
-const paths = require('./paths');
 const merge = require('webpack-merge');
-const baseConfig = require('./base');
-const NodemonPlugin = require( 'nodemon-webpack-plugin');
 const webpackNodeExternals = require('webpack-node-externals');
-
-const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
+const baseConfig = require('./base');
+const paths = require('./paths');
 
 const serverConfig = {
   // Inform webpack that we're building a bundle
@@ -21,7 +18,7 @@ const serverConfig = {
   },
 
   externals: [
-    webpackNodeExternals()
+    webpackNodeExternals(),
   ],
   optimization: {
     splitChunks: {
@@ -30,10 +27,10 @@ const serverConfig = {
           name: 'styles',
           test: /\.css$/,
           chunks: 'all',
-          enforce: true
-        }
-      }
-    }
+          enforce: true,
+        },
+      },
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -43,11 +40,6 @@ const serverConfig = {
         // Debug development
         NODE_ENV: JSON.stringify('development'),
       },
-    }),
-    new NodemonPlugin({
-      watch: paths.dist,
-      script: paths.dist + '/server.js',
-      delay: 300,
     }),
   ],
 };

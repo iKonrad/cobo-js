@@ -14,7 +14,7 @@ module.exports = {
   exported: path.join(root, 'exported'),
   js: path.join(root, 'dist', 'public', 'js'),
   css: path.join(root, 'dist', 'public', 'css'),
-  server: path.join(root, 'dist', 'server'),
+  server: path.join(root, 'src', 'server'),
   webpack: path.join(root, 'webpack'),
   scss: path.join(root, 'src', 'client', 'scss'),
   containers: path.join(root, 'src', 'client', 'containers'),

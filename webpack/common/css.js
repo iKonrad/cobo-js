@@ -1,6 +1,6 @@
 const paths = require('./paths');
 
-const css = (isProduction) => {
+const css = isProduction => {
   const config = {
     // CSS loader configuration -- plain CSS, SASS and LESS
     rules: [
@@ -21,7 +21,7 @@ const css = (isProduction) => {
             },
           },
         ],
-      }
+      },
     ],
 
     // Defaults to use with `css-loader` in all environments
@@ -38,15 +38,15 @@ const css = (isProduction) => {
 
     // Return an array containing the module RegExp and css-loader config,
     // based on the original file extension
-    getModuleRegExp (ext) {
+    getModuleRegExp(ext) {
       return [
-        [`^(?!.*\\.global\\.${ext}$).*\\.${ext}$`, {modules: true}],
-        [`\\.global\\.${ext}$`, {modules: false}],
+        [`^(?!.*\\.global\\.${ext}$).*\\.${ext}$`, { modules: true }],
+        [`\\.global\\.${ext}$`, { modules: false }],
       ];
     },
 
-    getDevLoaders (extractCSS, sourceMap = false) {
-      return (function * loadCss () {
+    getDevLoaders(extractCSS, sourceMap = false) {
+      return (function* loadCss() {
         for (const loader of config.rules) {
           // Iterate over CSS/SASS/LESS and yield local and global mod configs
           for (const mod of config.getModuleRegExp(loader.ext)) {
@@ -74,8 +74,8 @@ const css = (isProduction) => {
       }());
     },
 
-    getProdLoaders (extractCSS) {
-      return (function * loadCss () {
+    getProdLoaders(extractCSS) {
+      return (function* loadCss() {
         for (const loader of config.rules) {
           // Iterate over CSS/SASS/LESS and yield local and global mod configs
           for (const mod of config.getModuleRegExp(loader.ext)) {
@@ -103,27 +103,27 @@ const css = (isProduction) => {
       }());
     },
 
-//   for (const mod of config.getModuleRegExp(loader.ext)) {
-//   yield {
-//     test: new RegExp(mod[0]),
-//     use: [
-//       {
-//         loader: 'css-loader/locals',
-//         options: {
-//           modules: true,
-//           localIdentName: '[path][name]__[local]--[hash:base64:5]',
-//           getLocalIdent: (context, localIdentName, localName, options) => {
-//             return 'something' + Math.random();
-//           }
-//         }
-//       },
-//       ...loader.use,
-//     ],
-//   };
-// }
-//
-    getExtractCSSLoaders () {
-      return (function * loadCss () {
+    //   for (const mod of config.getModuleRegExp(loader.ext)) {
+    //   yield {
+    //     test: new RegExp(mod[0]),
+    //     use: [
+    //       {
+    //         loader: 'css-loader/locals',
+    //         options: {
+    //           modules: true,
+    //           localIdentName: '[path][name]__[local]--[hash:base64:5]',
+    //           getLocalIdent: (context, localIdentName, localName, options) => {
+    //             return 'something' + Math.random();
+    //           }
+    //         }
+    //       },
+    //       ...loader.use,
+    //     ],
+    //   };
+    // }
+    //
+    getExtractCSSLoaders() {
+      return (function* loadCss() {
         for (const loader of config.rules) {
           // Iterate over CSS/SASS/LESS and yield local and global mod configs
           for (const mod of config.getModuleRegExp(loader.ext)) {
@@ -136,7 +136,7 @@ const css = (isProduction) => {
                     // Format for 'localised' CSS modules
                     localIdentName: isProduction ? '[hash:base64:7]' : '[local]-[hash:base64:4]',
                     modules: true,
-                  }
+                  },
                 },
                 ...loader.use,
               ],
@@ -145,7 +145,7 @@ const css = (isProduction) => {
         }
       }());
     },
-  }
+  };
   return config;
 };
 
