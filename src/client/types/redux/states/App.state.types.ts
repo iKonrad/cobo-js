@@ -6,12 +6,12 @@ export interface Translations {
 export interface Loading {
   on: boolean,
     processes: string[],
-    text: string|null,
+    text: string|undefined,
 }
 
 
 export interface AppState {
-  translations: Translations,
+    translations: Translations,
     loading: Loading,
     showMenu: boolean,
 }

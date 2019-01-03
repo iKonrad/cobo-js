@@ -23,7 +23,7 @@ const setCookie = (name: string, value: string, days?: number): string => {
  * @param name
  * @returns {*}
  */
-const getCookieForString = (cookieString: string, name: string): string|boolean => {
+const getCookieForString = (cookieString: string, name: string): string|null => {
   const nameEQ = `${name}=`;
   if (cookieString) {
     const ca = cookieString.split(';');
@@ -32,9 +32,9 @@ const getCookieForString = (cookieString: string, name: string): string|boolean 
       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
-    return false;
+    return null;
   }
-  return false;
+  return null;
 };
 
 /**
@@ -42,7 +42,7 @@ const getCookieForString = (cookieString: string, name: string): string|boolean 
  * @param name
  * @returns {*}
  */
-const getCookie = (name:string): string|boolean => getCookieForString(document.cookie, name);
+const getCookie = (name:string): string|null => getCookieForString(document.cookie, name);
 
 /**
  * Helper function that removes a cookie for a given name

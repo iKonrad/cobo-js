@@ -64,8 +64,8 @@ module.exports = {
     }],
 
     // Typescript
-    "no-unused-vars": "error",
-    "typescript/no-unused-vars": "error",
+    "no-unused-vars": 0,
+    "typescript/no-unused-vars": 0,
     "no-underscore-dangle": 0,
 
     // Import

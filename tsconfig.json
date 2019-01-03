@@ -6,11 +6,12 @@
     "strictNullChecks": true,   // enable strict null checks as a best practice
     "module": "es6",            // specify module code generation
     "jsx": "react",             // use typescript to transpile jsx to js
-    "target": "es5",            // specify ECMAScript target version
+    "target": "es6",            // specify ECMAScript target version
     "allowJs": true,
     "lib": ["es5", "es6", "dom"],
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "node_modules/@types"
     ],

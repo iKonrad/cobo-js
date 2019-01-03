@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from 'state/actions/User';
+import { Actions } from 'state/actions/User';
 import { withRouter } from 'react-router-dom';
 
 @withRouter
-@connect(state => ({user: state.user}))
+@connect(state => ({ user: state.user }))
 class Logout extends React.Component {
   async componentDidMount() {
-    await this.props.dispatch(logout());
+    await this.props.dispatch(Actions.logout());
     this.props.history.push('/');
   }
 

@@ -110,6 +110,7 @@
     "ts-loader": "^5.3.1",
     "typescript": "^3.2.2",
     "typescript-eslint-parser": "^21.0.2",
+    "typings-for-css-modules-loader": "^1.7.0",
     "webpack": "^4.15.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-chunk-hash": "^0.6.0",

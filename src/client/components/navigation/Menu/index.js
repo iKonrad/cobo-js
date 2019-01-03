@@ -3,21 +3,22 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { Actions } from 'state/actions/App';
 import MenuOption from './components/MenuOption';
 import GuestMenu from './components/GuestMenu';
 import UserMenu from './components/UserMenu';
-import { hideMobileMenu } from 'state/actions/App';
 import css from './styles.scss';
 
 
-@connect(state => ({showMenu: state.app.showMenu}))
+@connect(state => ({ showMenu: state.app.showMenu }))
 class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       expanded: false,
-    }
+    };
   }
+
   toggleExpanded = (value = false) => () => {
     const { state } = this;
     state.expanded = value;
@@ -26,23 +27,22 @@ class Menu extends React.Component {
 
   handleResize = () => {
     const { showMenu, dispatch } = this.props;
-    const w = window,
-          d = document,
-          documentElement = d.documentElement,
-          body = d.getElementsByTagName('body')[0],
-          width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
-
+    const w = window;
+    const d = document;
+    const documentElement = d.documentElement;
+    const body = d.getElementsByTagName('body')[0];
+    const width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
     if (width >= 768 && showMenu) {
-      dispatch(hideMobileMenu());
+      dispatch(Actions.hideMobileMenu());
     }
   }
 
-  componentDidMount () {
-    window.addEventListener("resize", this.handleResize);
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
   }
 
-  componentWillUnmount () {
-    window.removeEventListener("resize", this.handleResize);
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
@@ -69,14 +69,14 @@ class Menu extends React.Component {
           </MenuOption>
           <div className={css.separator} />
           {
-            user.authenticated ?
-              <UserMenu/> :
-              <GuestMenu/>
+            user.authenticated
+              ? <UserMenu />
+              : <GuestMenu />
           }
           <div className={css.separator} />
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -85,12 +85,12 @@ Menu.propTypes = {
   hidden: PropTypes.bool,
   user: PropTypes.object.isRequired,
   showMenu: PropTypes.bool,
-}
+};
 
 Menu.defaultProps = {
   expanded: false,
   hidden: false,
   showMenu: false,
-}
+};
 
 export default Menu;

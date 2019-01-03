@@ -9,5 +9,4 @@ export interface State {
 
 export * from './states/User.state.types';
 export * from './states/App.state.types';
-export * from './sagas.types';
 export * from './actions.types';

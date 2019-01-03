@@ -1,6 +1,8 @@
-import * as Constants from 'state/constants/App';
+import TypeKeys from 'state/constants/App';
+import { AppState } from 'types';
+import { Actions } from 'state/actions/App';
 
-export const defaultState = {
+export const defaultState: AppState = {
   translations: {},
   loading: {
     on: false,
@@ -10,34 +12,34 @@ export const defaultState = {
   showMenu: false,
 };
 
-export default (state = defaultState, action) => {
+export default (state: AppState = defaultState, action: Actions): AppState => {
   switch (action.type) {
-    case Constants.FETCH_TRANSLATIONS_SUCCESS: {
+    case TypeKeys.FETCH_TRANSLATIONS_SUCCESS: {
       return {
         ...state,
         translations: action.payload,
       };
     }
-    case Constants.FETCH_TRANSLATIONS_FAILURE: {
+    case TypeKeys.FETCH_TRANSLATIONS_FAILURE: {
       return {
         ...state,
         translations: {},
       };
     }
-    case Constants.START_LOADING: {
+    case TypeKeys.START_LOADING: {
       const processes = [...state.loading.processes];
-      processes.push(action.processId);
+      processes.push(action.payload.processId);
       return {
         ...state,
         loading: {
           on: true,
           processes,
-          text: action.text,
+          text: action.payload.text,
         },
       };
     }
-    case Constants.STOP_LOADING: {
-      const filteredProcesses = state.loading.processes.filter(i => i !== action.processId);
+    case TypeKeys.STOP_LOADING: {
+      const filteredProcesses = state.loading.processes.filter(i => i !== action.payload.processId);
       return {
         ...state,
         loading: {
@@ -47,18 +49,19 @@ export default (state = defaultState, action) => {
         },
       };
     }
-    case Constants.SHOW_MOBILE_MENU: {
+    case TypeKeys.SHOW_MOBILE_MENU: {
       return {
         ...state,
         showMenu: true,
       };
     }
-    case Constants.HIDE_MOBILE_MENU: {
+    case TypeKeys.HIDE_MOBILE_MENU: {
       return {
         ...state,
         showMenu: false,
       };
     }
+    default:
+      return state;
   }
-  return state;
 };

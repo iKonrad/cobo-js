@@ -32,7 +32,7 @@ const serverDevConfig = {
     new NodemonPlugin({
       watch: paths.dist,
       script: `${paths.dist}/server.js`,
-      delay: 300,
+      delay: 1000,
     }),
   ],
 };

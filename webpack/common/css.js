@@ -6,7 +6,15 @@ const css = isProduction => {
     rules: [
       {
         ext: 'css',
-        use: [],
+        use: [
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              namedExport: true,
+            },
+          },
+        ],
       },
       {
         ext: 's(c|a)ss',
