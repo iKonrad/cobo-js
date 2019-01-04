@@ -1,8 +1,7 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import settings from 'settings';
-import { ApiClientInterface } from 'types';
 
-class ApiClient implements ApiClientInterface {
+class ApiClient {
   baseUrl: string;
 
   session: AxiosInstance;
@@ -16,22 +15,17 @@ class ApiClient implements ApiClientInterface {
   }
 
   // @ts-ignore
-  get = async (...params) => this.session.get(...params);
+  get = async (url: string, config?: AxiosRequestConfig) => this.session.get(url, config);
 
-  // @ts-ignore
-  post = async (...params) => this.session.post(...params);
+  post = async (url: string, data?: any, config?: AxiosRequestConfig) => this.session.post(url, data, config);
 
-  // @ts-ignore
-  put = async (...params) => this.session.put(...params);
+  put = async (url: string, data?: any, config?: AxiosRequestConfig) => this.session.put(url, data, config);
 
-  // @ts-ignore
-  patch = async (...params) => this.session.patch(...params);
+  patch = async (url: string, data?: any, config?: AxiosRequestConfig) => this.session.patch(url, data, config);
 
-  // @ts-ignore
-  remove = async (...params) => this.session.delete(...params);
+  remove = async (url: string, config?: AxiosRequestConfig) => this.session.delete(url, config);
 
-  // @ts-ignore
-  call = async (...params) => this.session(...params);
+  request = async (config: AxiosRequestConfig) => this.session.request(config);
 }
 
 export default new ApiClient();

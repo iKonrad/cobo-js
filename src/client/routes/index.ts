@@ -1,9 +1,6 @@
-import React from 'react';
 import Settings from 'settings';
-import { compose } from 'redux';
 import isRoleAtLeast from 'components/hoc/isRoleAtLeast';
 import onlyNotAuthenticated from 'components/hoc/onlyNotAuthenticated';
-import withRouteData from 'components/hoc/connect';
 
 // Containers
 import Home, { loadData as loadHomeData } from 'containers/Home';

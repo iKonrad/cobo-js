@@ -4,7 +4,7 @@ import settings from 'settings';
 
 export const authenticate = async (username, password) => {
   try {
-    const { data } = await api.call({
+    const { data } = await api.request({
       url: '/auth',
       method: 'post',
       headers: {
@@ -44,7 +44,7 @@ export const logout = async () => {
 
 export const signup = async payload => {
   try {
-    const { data } = await api.call({
+    const { data } = await api.request({
       url: '/users',
       method: 'post',
       data: payload,
@@ -61,7 +61,7 @@ export const signup = async payload => {
 
 export const getUserData = async sessionToken => {
   try {
-    const response = await api.call({
+    const response = await api.request({
       url: '/me',
       method: 'get',
       headers: {

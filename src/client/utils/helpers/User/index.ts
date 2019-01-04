@@ -1,5 +1,7 @@
-import * as Fetchers from './fetchers';
+import * as UserFetchers from './fetchers';
 
-export default {
-  Fetchers,
+namespace User {
+  export const Fetchers = UserFetchers;
 }
+
+export default User;
