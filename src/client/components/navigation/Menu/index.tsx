@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import { Actions } from 'state/actions/App';
 import { ActionType, State, UserState } from 'types';
 import MenuOption from './components/MenuOption';
-import GuestMenu from './components/GuestMenu';
 import UserMenu from './components/UserMenu';
 import css from './styles.scss';
 
@@ -51,7 +50,7 @@ class Menu extends React.Component<Props, OwnState> {
     const state = { ...this.state };
     state.expanded = value;
     this.setState(state);
-  }
+  };
 
   handleResize = () => {
     const { showMenu, onHideMobileMenu } = this.props;
@@ -63,10 +62,10 @@ class Menu extends React.Component<Props, OwnState> {
     if (width >= 768 && showMenu) {
       onHideMobileMenu();
     }
-  }
+  };
 
   render() {
-    const { user, showMenu } = this.props;
+    const { showMenu } = this.props;
     const { expanded } = this.state;
 
     const classes = classnames({
@@ -89,11 +88,7 @@ class Menu extends React.Component<Props, OwnState> {
             <FormattedMessage id="menu.home" />
           </MenuOption>
           <div className={css.separator} />
-          {
-            user.authenticated
-              ? <UserMenu />
-              : <GuestMenu />
-          }
+          <UserMenu />
           <div className={css.separator} />
         </div>
       </div>

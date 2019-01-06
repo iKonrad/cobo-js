@@ -105,7 +105,9 @@ class Navbar extends React.Component<Props, OwnState> {
                 )
                 : <div className="navbar-menu-toggler-mock" />
             }
-          <div className="navbar-brand">Szery</div>
+          <Link className="navbar-brand" to="/">
+            <img src="/public/identity/logotype-white.svg" width="95" alt="Sozzy" />
+          </Link>
           <div className="navbar-toggler" onClick={this.toggleMobileMenu}>
               User
           </div>
