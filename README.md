@@ -7,6 +7,7 @@
 
 ## Features
 
+- Written in TypeScript (React components, Reducers, Sagas)
 - React 16.6 with Server-side rendering
 - React Router v4
 - Redux Saga

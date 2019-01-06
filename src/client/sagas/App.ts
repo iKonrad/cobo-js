@@ -6,7 +6,7 @@ import { ActionType } from 'types';
 
 export function* fetchTranslations(action: ActionType) {
   try {
-    const { data } = yield call(api.call, {
+    const { data } = yield call(api.request, {
       url: '/locales',
       headers: {
         'Accept-Language': action.payload.code,
