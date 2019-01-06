@@ -44,24 +44,7 @@ module.exports = {
     'react/prefer-stateless-function': [2, { ignorePureComponents: true }],
     'react/no-multi-comp': 0,
     'react/jsx-closing-bracket-location': [1, 'after-props'],
-    'react/prop-types': [1, {
-      ignore: [
-        'dispatch',
-        'data',
-        'order',
-        'children',
-        'user',
-        'validate',
-        'fields',
-        'addError',
-        'intl',
-        'states',
-        'settings',
-        'setField',
-        'payment',
-        'history',
-      ],
-    }],
+    'react/prop-types': 0,
 
     // Typescript
     "no-unused-vars": 0,
