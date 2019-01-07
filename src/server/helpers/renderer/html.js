@@ -7,7 +7,7 @@ const html = (content, store, scripts = [], styles = []) => {
     <!DOCTYPE html>
     <html lang="en">
         <head>
-            <title>Createam</title>
+            <title>Sozzy</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             ${
               styles.map(style => `<link rel="stylesheet" href="/${style}" />`).join('\n')
