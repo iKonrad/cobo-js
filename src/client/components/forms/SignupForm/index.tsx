@@ -59,4 +59,4 @@ const SignupForm:React.FunctionComponent<OwnProps> = props => (
     )} />
 );
 
-export default SignupForm;
+export default withRouter(SignupForm);

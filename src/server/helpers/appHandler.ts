@@ -1,11 +1,16 @@
 import { Actions as UserActions } from 'state/actions/User';
 import { Actions as AppActions } from 'state/actions/App';
 import Routes from 'routes';
+import Loadable from 'react-loadable';
 import { matchRoutes } from 'react-router-config';
 import Cookies from 'utils/Cookies';
 import settings from 'settings';
 import { renderComponentToString } from './renderer';
 import createStore from './redux';
+
+interface ReactContext {
+  notFound: boolean,
+}
 
 export default (scripts = [], styles = []) => async ctx => {
   const { store } = createStore();
@@ -18,27 +23,32 @@ export default (scripts = [], styles = []) => async ctx => {
     ctx.request.header.cookie,
     settings.AUTH_COOKIE_NAME,
   );
+
   if (sessionToken) {
     const data = await store.dispatch(UserActions.fetchUserData(sessionToken));
     if (data) {
-      await store.dispatch(UserActions.authenticateSuccess(sessionToken, null));
+      await store.dispatch(UserActions.authenticateSuccess(sessionToken, { thunk: false }));
     }
   }
+
   await store.dispatch(AppActions.fetchTranslations('pl-PL'));
 
   const componentPromises = routeComponents.map(({ route, match }) => {
     if (route.loadData) {
       return route.loadData(store, route, match);
     }
+    return null;
   });
+
   if (componentPromises.length > 0) {
     await Promise.all(componentPromises);
   }
 
-  const context = {};
-  ctx.body = renderComponentToString(ctx, store, context, scripts, styles);
-
-  if (context.notFound) {
-    ctx.status = 404;
-  }
+  const context:ReactContext = { notFound: false };
+  Loadable.preloadAll().then(() => {
+    ctx.body = renderComponentToString(ctx, store, context, scripts, styles);
+    if (context.notFound) {
+      ctx.status = 404;
+    }
+  });
 };

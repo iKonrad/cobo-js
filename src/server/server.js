@@ -10,7 +10,7 @@ import createAppHandler from './helpers/appHandler';
 import apiProxyHandler from './helpers/apiProxyHandler';
 
 // Import global SCSS
-import './../client/scss/styles.global.scss';
+import '../client/scss/styles.global.scss';
 
 // Create Koa server instance
 const app = new Koa();
@@ -29,14 +29,14 @@ app.use(apiProxyHandler);
 const listen = async () => {
   // Spawn the listeners.
   const servers = [];
-  Loadable.preloadAll().then(() => {
-    const protocol = http;
-    servers.push(
-      protocol.createServer(app.callback()).listen(settings.PORT, () => {
-        console.log('Listening on port', settings.PORT);
-      })
+
+  const protocol = http;
+  servers.push(
+    protocol.createServer(app.callback()).listen(settings.PORT, () => {
+      console.log('Listening on port', settings.PORT);
+    }),
   );
-  });
+
 
   return servers;
 };
@@ -45,4 +45,4 @@ export default {
   createAppHandler,
   app,
   listen,
-}
+};

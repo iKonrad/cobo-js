@@ -55,7 +55,7 @@ module.exports = {
     'import/no-unresolved': [2, { commonjs: true }],
 
     // Compat
-    'compat/compat': 2,
+    'compat/compat': 1,
 
     // JSX-a11y
     "jsx-a11y/anchor-is-valid": [ "error", {

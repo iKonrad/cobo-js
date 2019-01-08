@@ -21,6 +21,7 @@
     "@types/axios": "^0.14.0",
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
+    "@types/react-loadable": "^5.4.3",
     "@types/reactstrap": "^6.4.4",
     "axios": "^0.16.2",
     "babel-plugin-react-css-modules": "^3.4.2",
