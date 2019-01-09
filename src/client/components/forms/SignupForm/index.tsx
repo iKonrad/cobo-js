@@ -27,7 +27,6 @@ const SignupForm:React.FunctionComponent<OwnProps> = props => (
       const response = await User.Fetchers.signup(data);
 
       if (response.errors) {
-        console.log('err', response.errors);
         actions.setErrors(response.errors);
       } else {
         alert('Signed up');

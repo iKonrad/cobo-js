@@ -6,13 +6,12 @@
   "scripts": {
     "dev": "cross-env WEBPACK_CONFIG=client-dev,server-dev webpack --colors",
     "clean": "rimraf dist exported/modules.json exported/webpack.stats.json",
-    "dev:build-server": "cross-env NODE_ENV=production WEBPACK_CONFIG=server-dev webpack --colors",
-    "dev:build-client": "cross-env NODE_ENV=production WEBPACK_CONFIG=client-dev webpack --colors",
+    "dev:server": "cross-env NODE_ENV=production WEBPACK_CONFIG=server-dev webpack --colors",
+    "dev:client": "cross-env NODE_ENV=production WEBPACK_CONFIG=client-dev webpack --colors",
     "prod:build-server": "NODE_ENV=production cross-env WEBPACK_CONFIG=server-prod webpack --mode=production --env production --colors",
     "prod:build-client": "NODE_ENV=production cross-env WEBPACK_CONFIG=client-prod webpack --mode=production --env production --colors",
     "prod:build": "npm-run-all clean prod:build-client prod:build-server",
     "prod:run": "node dist/server.js",
-    "start": "cross-env WEBPACK_CONFIG=client-dev,server-dev webpack --colors",
     "prod": "npm-run-all clean prod:build-client prod:build-server prod:run"
   },
   "author": "Konrad Jarosinski",
