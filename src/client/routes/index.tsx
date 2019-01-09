@@ -31,7 +31,7 @@ export default [
   },
   {
     path: '/signup',
-    component: onlyNotAuthenticated(Signup),
+    component: Signup,
   },
   {
     component: NotFound,

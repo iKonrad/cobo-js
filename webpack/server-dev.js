@@ -11,7 +11,7 @@ const css = createCss(false);
 
 const serverDevConfig = {
   // Tell webpack the root file of our server application
-  entry: `${paths.server}/server-dev.js`,
+  entry: `${paths.server}/server-dev.ts`,
 
   // Tell webpack if we're on development or production environment
   mode: 'development',
@@ -23,8 +23,7 @@ const serverDevConfig = {
     rules: [
       // CSS loaders
       ...css.getExtractCSSLoaders(false /* sourceMaps = true */),
-      { test: /\.tsx?$/, use: [{ loader: 'awesome-typescript-loader' }] },
-      babelLoader(true),
+      ...babelLoader(true),
     ],
   },
   plugins: [

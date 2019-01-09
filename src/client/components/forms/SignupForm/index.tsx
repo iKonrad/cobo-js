@@ -3,7 +3,7 @@ import User from 'utils/helpers/User';
 import { FormattedMessage } from 'react-intl';
 import BasicField from 'components/forms/fields/Basic';
 import * as Formik from 'formik';
-import { withRouter } from 'react-router-dom';
+import * as Router from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 interface OwnProps {
@@ -59,4 +59,4 @@ const SignupForm:React.FunctionComponent<OwnProps> = props => (
     )} />
 );
 
-export default withRouter(SignupForm);
+export default Router.withRouter(SignupForm);

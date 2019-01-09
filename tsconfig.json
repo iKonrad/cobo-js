@@ -12,12 +12,16 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types"
     ],
     "paths": {
       "utils/*": [ "utils/*" ],
-      "settings": [ "../../settings/index.ts" ]
+      "exported/*": [ "../../exported/*" ],
+      "settings": [ "../../settings/index.ts" ],
+      "src/*": ["../../src/*"]
     }
   }
 }

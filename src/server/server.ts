@@ -1,16 +1,17 @@
 import 'babel-polyfill';
 import Koa from 'koa';
 
-import http from 'http';
-
-import serveStatic from 'koa-static';
+import http, { Server } from 'http';
 import Loadable from 'react-loadable';
+import serveStatic from 'koa-static';
 import settings from 'settings';
 import createAppHandler from './helpers/appHandler';
 import apiProxyHandler from './helpers/apiProxyHandler';
 
 // Import global SCSS
 import '../client/scss/styles.global.scss';
+
+const Loadable = require('react-loadable');
 
 // Create Koa server instance
 const app = new Koa();
@@ -28,8 +29,8 @@ app.use(apiProxyHandler);
 // config and available ports
 const listen = async () => {
   // Spawn the listeners.
-  const servers = [];
-
+  const servers: Server[] = [];
+  await Loadable.preloadAll();
   const protocol = http;
   servers.push(
     protocol.createServer(app.callback()).listen(settings.PORT, () => {

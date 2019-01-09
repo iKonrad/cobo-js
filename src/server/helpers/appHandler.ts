@@ -1,10 +1,10 @@
 import { Actions as UserActions } from 'state/actions/User';
 import { Actions as AppActions } from 'state/actions/App';
 import Routes from 'routes';
-import Loadable from 'react-loadable';
 import { matchRoutes } from 'react-router-config';
 import Cookies from 'utils/Cookies';
 import settings from 'settings';
+import * as Loadable from 'react-loadable';
 import { renderComponentToString } from './renderer';
 import createStore from './redux';
 
@@ -12,7 +12,7 @@ interface ReactContext {
   notFound: boolean,
 }
 
-export default (scripts = [], styles = []) => async ctx => {
+export default (scripts:string[] = [], styles:string[] = [], loadable: Loadable.Loadable) => async ctx => {
   const { store } = createStore();
 
   // Get array of components to render for this path
@@ -45,10 +45,8 @@ export default (scripts = [], styles = []) => async ctx => {
   }
 
   const context:ReactContext = { notFound: false };
-  Loadable.preloadAll().then(() => {
-    ctx.body = renderComponentToString(ctx, store, context, scripts, styles);
-    if (context.notFound) {
-      ctx.status = 404;
-    }
-  });
+  ctx.body = renderComponentToString(ctx, store, context, scripts, styles, loadable.Capture);
+  if (context.notFound) {
+    ctx.status = 404;
+  }
 };

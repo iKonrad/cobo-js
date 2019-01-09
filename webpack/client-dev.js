@@ -23,8 +23,7 @@ const clientDevConfig = {
     rules: [
       // CSS loaders
       ...css.getDevLoaders(createMiniExtractPlugin.loader, true),
-      { test: /\.tsx?$/, use: [{ loader: 'awesome-typescript-loader' }] },
-      babelLoader(false),
+      ...babelLoader(false),
     ],
   },
   plugins: [

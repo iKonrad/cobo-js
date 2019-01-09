@@ -10,7 +10,7 @@ const css = createCss(true);
 
 const serverProdConfig = {
   // Tell webpack the root file of our server application
-  entry: `${Paths.server}/server-prod.js`,
+  entry: `${Paths.server}/server-prod.ts`,
 
   // Tell webpack if we're on development or production environment
   mode: 'production',
