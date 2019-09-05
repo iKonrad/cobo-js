@@ -105,7 +105,11 @@ class Navbar extends React.Component<Props, OwnState> {
                 )
                 : <div className="navbar-menu-toggler-mock" />
             }
-          <div className="navbar-brand">Cobo.js</div>
+          <div className="navbar-brand">
+            <Link to="/">
+              Cobo.js
+            </Link>
+          </div>
           <div className="navbar-toggler" onClick={this.toggleMobileMenu}>
               User
           </div>

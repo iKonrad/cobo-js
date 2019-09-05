@@ -11,7 +11,7 @@ const LoginForm = Loadable({
   loading: LoadingComponent,
 });
 
-const LogIn = (
+const LogIn = () => (
   <Empty>
     <Container>
       <Row>

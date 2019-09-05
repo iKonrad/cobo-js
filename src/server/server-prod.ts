@@ -1,9 +1,10 @@
-import { readFileSync } from "fs"
+import { readFileSync } from 'fs';
 import path from 'path';
-import server from './server';
+// @ts-ignore
 import stats from 'exported/webpack.stats.json';
+import server from './server';
 
-const manifest = JSON.parse(readFileSync(path.resolve('dist', `manifest.json`), 'utf8'));
+const manifest = JSON.parse(readFileSync(path.resolve('dist', 'manifest.json'), 'utf8'));
 
 const styles = [
   manifest['main.css'],

@@ -12,7 +12,7 @@ const serverConfig = {
   // Tell webpack where to put the output file that is generated
   output: {
     filename: 'server.js',
-    chunkFilename: '[name].server.js',
+    chunkFilename: '[name]-[contenthash].chunk.js',
     path: paths.dist,
     publicPath: paths.public,
   },
@@ -20,18 +20,6 @@ const serverConfig = {
   externals: [
     webpackNodeExternals(),
   ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
-  },
   plugins: [
     new webpack.DefinePlugin({
       // We're not running on the server

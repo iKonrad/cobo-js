@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const baseConfig = require('./base');
 const paths = require('./paths');
 const EntryChunksPlugin = require('./plugins/chunksPlugin');
+const HashedChunkidsPlugin = require('webpack-hashed-chunkids');
 
 module.exports = function (isProduction) {
   const clientConfig = {
@@ -13,8 +14,8 @@ module.exports = function (isProduction) {
 
     // Tell webpack where to put the output file that is generated
     output: {
-      filename: 'js/client.js',
-      chunkFilename: 'js/[name].chunk.js',
+      filename: 'js/[name]-[contenthash].js',
+      chunkFilename: 'js/[name]-[contenthash].chunk.js',
       path: paths.public,
       publicPath: '/',
     },
@@ -23,6 +24,11 @@ module.exports = function (isProduction) {
     plugins: [
       new ReactLoadablePlugin({
         filename: `${paths.exported}/modules.json`,
+      }),
+      new HashedChunkidsPlugin({ // So the chunk IDs don't change with each compilation
+        hashFunction: 'md5',
+        hashDigest: 'hex',
+        hashDigestLength: 4,
       }),
       new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
       new EntryChunksPlugin({
@@ -38,31 +44,6 @@ module.exports = function (isProduction) {
         },
       ]),
     ],
-    optimization: {
-      runtimeChunk: 'single',
-      splitChunks: {
-        chunks: 'all',
-        maxInitialRequests: Infinity,
-        minSize: 50000,
-        cacheGroups: {
-          vendor: {
-            test: /node_modules/,
-            name(module) {
-              let packageName = '';
-              if (module.context.endsWith('client/scss')) {
-                packageName = 'vendor';
-              } else {
-                const result = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-                if (result) {
-                  packageName = `npm.${result[1].replace('@', '')}`;
-                }
-              }
-              return packageName;
-            },
-          },
-        },
-      },
-    },
   };
   return merge(baseConfig, clientConfig);
 };

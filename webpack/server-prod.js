@@ -1,3 +1,4 @@
+import babelLoader from './common/babel-loader';
 import Paths from './common/paths';
 
 const webpack = require('webpack');
@@ -10,16 +11,28 @@ const css = createCss(true);
 
 const serverProdConfig = {
   // Tell webpack the root file of our server application
-  entry: `${Paths.server}/server-prod.js`,
+  entry: `${Paths.server}/server-prod.ts`,
 
   // Tell webpack if we're on development or production environment
   mode: 'production',
-
   module: {
     rules: [
       // CSS loaders
       ...css.getExtractCSSLoaders(true),
+      ...babelLoader(true),
     ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
   },
   plugins: [
     Common.getProgressBar('Server', 'production'),

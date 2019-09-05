@@ -28,7 +28,7 @@ export default [
   },
   {
     path: '/profile',
-    component: isRoleAtLeast(Settings.CONST.USER_TYPES.USER)(Profile),
+    component: isRoleAtLeast(Profile, Settings.CONST.USER_TYPES.USER),
   },
   {
     path: '/signup',

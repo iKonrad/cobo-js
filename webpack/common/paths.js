@@ -24,6 +24,7 @@ module.exports = {
   utils: path.join(root, 'src', 'client', 'utils'),
   settings: path.join(root, 'settings'),
   components: path.join(root, 'src', 'client', 'components'),
+  icons: path.join(root, 'src', 'client', 'icons'),
   types: path.join(root, 'src', 'client', 'types'),
   templates: path.join(root, 'src', 'client', 'templates'),
 };

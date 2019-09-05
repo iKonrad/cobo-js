@@ -1,5 +1,6 @@
-import server from './server';
+// @ts-ignore
 import stats from 'exported/webpack.stats.json';
+import server from './server';
 
 
 (async () => {

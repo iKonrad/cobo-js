@@ -8,8 +8,8 @@ const clientConfig = require('./common/client');
 const Common = require('./common/common');
 
 const extractCSS = new createMiniExtractPlugin({
-  filename: 'css/style.css',
-  chunkFileName: 'css/[id].chunk.css',
+  filename: 'css/style.[chunkhash].css',
+  chunkFileName: 'css/[id].chunk.[chunkhash].css',
 });
 
 const css = createCss(false);
@@ -22,9 +22,8 @@ const clientDevConfig = {
   module: {
     rules: [
       // CSS loaders
-      ...css.getDevLoaders(createMiniExtractPlugin.loader, true),
-      { test: /\.tsx?$/, use: [{ loader: 'awesome-typescript-loader' }] },
-      babelLoader(false),
+      ...css.getDevLoaders(createMiniExtractPlugin.loader, false),
+      ...babelLoader(false),
     ],
   },
   plugins: [
@@ -41,11 +40,6 @@ const clientDevConfig = {
     }),
     Common.getProgressBar('Client', 'development'),
   ],
-  optimization: {
-    splitChunks: {
-      minSize: 1000000,
-    },
-  },
 };
 
 module.exports = merge(clientConfig(false), clientDevConfig);
