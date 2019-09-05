@@ -44,24 +44,7 @@ module.exports = {
     'react/prefer-stateless-function': [2, { ignorePureComponents: true }],
     'react/no-multi-comp': 0,
     'react/jsx-closing-bracket-location': [1, 'after-props'],
-    'react/prop-types': [1, {
-      ignore: [
-        'dispatch',
-        'data',
-        'order',
-        'children',
-        'user',
-        'validate',
-        'fields',
-        'addError',
-        'intl',
-        'states',
-        'settings',
-        'setField',
-        'payment',
-        'history',
-      ],
-    }],
+    'react/prop-types': 0,
 
     // Typescript
     "no-unused-vars": 0,
@@ -72,7 +55,7 @@ module.exports = {
     'import/no-unresolved': [2, { commonjs: true }],
 
     // Compat
-    'compat/compat': 2,
+    'compat/compat': 1,
 
     // JSX-a11y
     "jsx-a11y/anchor-is-valid": [ "error", {

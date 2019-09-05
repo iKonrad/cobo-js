@@ -1,40 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as Redux from 'redux';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { Actions } from 'state/actions/App';
+import { ActionType, State, UserState } from 'types';
 import MenuOption from './components/MenuOption';
-import GuestMenu from './components/GuestMenu';
 import UserMenu from './components/UserMenu';
 import css from './styles.scss';
 
+interface OwnProps {
+  expanded?: boolean,
+  hidden?: boolean,
+  user: UserState,
+}
 
-@connect(state => ({ showMenu: state.app.showMenu }))
-class Menu extends React.Component {
+interface OwnState {
+  expanded: boolean,
+}
+
+interface StateProps {
+  showMenu: boolean,
+}
+
+interface DispatchProps {
+  onHideMobileMenu: () => void,
+}
+
+type Props = OwnProps & StateProps & DispatchProps;
+
+// @connect(state => ({ showMenu: state.app.showMenu }))
+class Menu extends React.Component<Props, OwnState> {
   constructor(props) {
     super(props);
     this.state = {
       expanded: false,
     };
-  }
-
-  toggleExpanded = (value = false) => () => {
-    const { state } = this;
-    state.expanded = value;
-    this.setState(state);
-  }
-
-  handleResize = () => {
-    const { showMenu, dispatch } = this.props;
-    const w = window;
-    const d = document;
-    const documentElement = d.documentElement;
-    const body = d.getElementsByTagName('body')[0];
-    const width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
-    if (width >= 768 && showMenu) {
-      dispatch(Actions.hideMobileMenu());
-    }
   }
 
   componentDidMount() {
@@ -45,8 +46,26 @@ class Menu extends React.Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
+  toggleExpanded = (value = false) => () => {
+    const state = { ...this.state };
+    state.expanded = value;
+    this.setState(state);
+  };
+
+  handleResize = () => {
+    const { showMenu, onHideMobileMenu } = this.props;
+    const w = window;
+    const d = document;
+    const { documentElement } = d;
+    const body = d.getElementsByTagName('body')[0];
+    const width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
+    if (width >= 768 && showMenu) {
+      onHideMobileMenu();
+    }
+  };
+
   render() {
-    const { user, showMenu } = this.props;
+    const { showMenu } = this.props;
     const { expanded } = this.state;
 
     const classes = classnames({
@@ -58,6 +77,7 @@ class Menu extends React.Component {
     return (
       <div
         className={classes}
+        onFocus={this.toggleExpanded(true)}
         onMouseOver={this.toggleExpanded(true)}
         onMouseLeave={this.toggleExpanded(false)}>
         <div className={css.menu}>
@@ -68,11 +88,7 @@ class Menu extends React.Component {
             <FormattedMessage id="menu.home" />
           </MenuOption>
           <div className={css.separator} />
-          {
-            user.authenticated
-              ? <UserMenu />
-              : <GuestMenu />
-          }
+          <UserMenu />
           <div className={css.separator} />
         </div>
       </div>
@@ -80,17 +96,12 @@ class Menu extends React.Component {
   }
 }
 
-Menu.propTypes = {
-  expanded: PropTypes.bool,
-  hidden: PropTypes.bool,
-  user: PropTypes.object.isRequired,
-  showMenu: PropTypes.bool,
-};
+const mapStateToProps = (state: State):StateProps => ({
+  showMenu: state.app.showMenu,
+});
 
-Menu.defaultProps = {
-  expanded: false,
-  hidden: false,
-  showMenu: false,
-};
+const mapDispatchToProps = (dispatch: Redux.Dispatch<ActionType>): DispatchProps => Redux.bindActionCreators({
+  onHideMobileMenu: Actions.hideMobileMenu,
+}, dispatch);
 
-export default Menu;
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

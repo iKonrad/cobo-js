@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { State, UserState } from 'types';
 
-const isRoleAtLEast = (WrappedComponent, minLevel: number) => {
+const isRoleAtLEast = WrappedComponent => {
   interface StateProps {
     user: UserState,
   }
@@ -13,7 +13,6 @@ const isRoleAtLEast = (WrappedComponent, minLevel: number) => {
     const filteredProps = Object.keys(props)
       .filter(propName => propName !== 'user')
       .reduce((obj, key) => {
-        // eslint-disable-next-line no-param-reassign
         obj[key] = props[key];
         return obj;
       }, {});
@@ -23,7 +22,7 @@ const isRoleAtLEast = (WrappedComponent, minLevel: number) => {
       return <WrappedComponent {...filteredProps} />;
     }
 
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   };
 
   const mapStateToProps = (state: State): StateProps => ({

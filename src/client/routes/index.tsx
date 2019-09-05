@@ -1,21 +1,24 @@
-import Settings from 'settings';
+import * as React from 'react';
 import isRoleAtLeast from 'components/hoc/isRoleAtLeast';
 import onlyNotAuthenticated from 'components/hoc/onlyNotAuthenticated';
+import Loadable from 'react-loadable';
 
 // Containers
-import Home, { loadData as loadHomeData } from 'containers/Home';
 import LogIn from 'containers/LogIn';
 import Logout from 'containers/Logout';
-import Profile from 'containers/Profile';
 import Signup from 'containers/Signup';
 
 import NotFound from 'containers/NotFound';
 
+const Dashboard = Loadable({
+  loader: () => import('containers/Dashboard'),
+  loading: () => <div>Loading</div>,
+});
+
 export default [
   {
     path: '/',
-    component: Home,
-    loadData: loadHomeData,
+    component: isRoleAtLeast(Dashboard),
     exact: true,
   },
   {
@@ -27,14 +30,10 @@ export default [
     component: Logout,
   },
   {
-    path: '/profile',
-    component: isRoleAtLeast(Profile, Settings.CONST.USER_TYPES.USER),
-  },
-  {
     path: '/signup',
-    component: onlyNotAuthenticated(Signup),
+    component: Signup,
   },
   {
     component: NotFound,
-  }
+  },
 ];

@@ -27,8 +27,6 @@ export function* fetchUserData(action: ActionType) {
     token = yield select((state: State) => state.user.sessionToken);
   }
 
-  console.log('tok', token);
-
   if (token) {
     const data = yield call(User.Fetchers.getUserData, token);
     if (data && data.data) {
