@@ -23,7 +23,6 @@ export const renderComponentToString = (ctx, store, context, initialScripts: str
         <StaticRouter location={ctx.path} context={context}>
           <Provider store={store}>
             <GlobalWrapper>
-
               <App>{renderRoutes(Routes)}</App>
             </GlobalWrapper>
           </Provider>

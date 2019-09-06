@@ -6,7 +6,7 @@ const html = (content, store, scripts = [], styles = [], serverData) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
-            <title>Sozzy</title>
+            <title>Cobo.js</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
             ${
   styles.map(style => `<link rel="stylesheet" href="/${style}" />`).join('\n')

@@ -31,8 +31,10 @@
   }
 
   .navbar-brand {
-    color: white;
     margin: 0;
+    a {
+      color: white;
+    }
   }
 
   .navbar-toggler {
