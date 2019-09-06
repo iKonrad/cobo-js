@@ -11,6 +11,7 @@ import * as ReactDOM from 'react-dom';
 // Import Browser router
 import { BrowserRouter } from 'react-router-dom';
 
+import { Provider as ServerDataProvider } from 'components/hoc/ServerData';
 
 // Import react redux library
 import { Provider } from 'react-redux';
@@ -28,6 +29,8 @@ import App from './App';
 import createClientStore from './store';
 import Routes from './routes';
 
+import GlobalWrapper from './GlobalWrapper';
+
 // Get the initial state passed from the server
 let initialState = defaultState;
 try {
@@ -39,6 +42,11 @@ try {
   initialState = defaultState;
 }
 
+let serverData = {};
+try {
+  serverData = JSON.parse((window as any).SERVER_DATA);
+} catch (e) {}
+
 // Create redux store
 const store = createClientStore(initialState);
 
@@ -47,11 +55,17 @@ Loadable.preloadReady().then(() => {
 
   // Build a react component for the application
   const Page = () => (
-    <Provider store={store}>
+    <ServerDataProvider data={serverData}>
       <BrowserRouter>
-        <App>{routes}</App>
+        <Provider store={store}>
+          <GlobalWrapper>
+
+            <App>{routes}</App>
+
+          </GlobalWrapper>
+        </Provider>
       </BrowserRouter>
-    </Provider>
+    </ServerDataProvider>
   );
 
   ReactDOM.hydrate(<Page />, document.getElementById('root'));

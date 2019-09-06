@@ -1,29 +1,40 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import * as Loadable from 'react-loadable';
 import uniqBy from 'lodash/uniqBy';
 import { Provider } from 'react-redux';
+import { Provider as ServerDataProvider } from 'components/hoc/ServerData';
 import { getBundles } from 'react-loadable/webpack';
+// @ts-ignore
 import stats from 'exported/modules.json';
 import { renderRoutes } from 'react-router-config';
 import Routes from 'routes';
+import GlobalWrapper from 'src/client/GlobalWrapper';
 import App from 'src/client/App';
 import html from './html';
 
-const renderComponentToString = (ctx, store, context, initialScripts:string[] = [], initialStyles: string[] = [], Capture: React.ComponentType<Loadable.LoadableCaptureProps>) => {
+export const renderComponentToString = (ctx, store, context, initialScripts: string[] = [], initialStyles: string[] = [], serverData, Capture) => {
   const modules: string[] = [];
   const Page = () => (
-    <Capture report={moduleName => { modules.push(moduleName); }}>
-      <Provider store={store}>
+    <Capture report={moduleName => {
+      modules.push(moduleName);
+    }}>
+      <ServerDataProvider data={serverData}>
         <StaticRouter location={ctx.path} context={context}>
-          <App>{renderRoutes(Routes)}</App>
+          <Provider store={store}>
+            <GlobalWrapper>
+
+              <App>{renderRoutes(Routes)}</App>
+            </GlobalWrapper>
+          </Provider>
         </StaticRouter>
-      </Provider>
+      </ServerDataProvider>
     </Capture>
   );
 
+
   const content = renderToString(<Page />);
+
   // @ts-ignore
   let bundles = getBundles(stats, modules);
 
@@ -39,9 +50,5 @@ const renderComponentToString = (ctx, store, context, initialScripts:string[] = 
       : styles.unshift(bundle.file)),
   );
 
-  return html(content, store, scripts, styles);
-};
-
-export {
-  renderComponentToString,
+  return html(content, store, scripts, styles, serverData);
 };
