@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import BasicField from 'components/forms/fields/Basic';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import Alert from 'components/ui/Alert';
 import * as Formik from 'formik';
 import { ActionType, State, UserState } from 'types';
@@ -26,7 +25,7 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 interface FormValues {
-  username: string,
+  email: string,
   password: string,
 }
 
@@ -34,16 +33,18 @@ const LoginForm:React.FunctionComponent<Props> = props => (
   <Formik.Formik
     initialValues={{}}
     onSubmit={async (
-      { username, password }: FormValues,
+      { email, password }: FormValues,
       actions: Formik.FormikActions<FormValues>) => {
       const { history, onAuthenticate, onFetchUserData } = props;
-      const response = await onAuthenticate(username, password);
+      const response = await onAuthenticate(email, password);
 
       if (response.errors) {
+
         actions.setErrors(response.errors);
+        return;
       }
 
-      if (response && response.payload.sessionToken) {
+      if (response.payload && response.payload.sessionToken) {
         const userData = await onFetchUserData(response.payload.sessionToken);
         if (userData.errors) {
           actions.setErrors(response.errors);
@@ -57,10 +58,10 @@ const LoginForm:React.FunctionComponent<Props> = props => (
     render={() => (
       <Formik.Form>
         <Formik.Field
-          id="username"
+          id="email"
           type="text"
-          label={<FormattedMessage id="form.placeholder.username" />}
-          name="username"
+          label={<FormattedMessage id="form.placeholder.email" />}
+          name="email"
           component={BasicField} />
         <Formik.Field
           id="password"
@@ -68,7 +69,7 @@ const LoginForm:React.FunctionComponent<Props> = props => (
           label={<FormattedMessage id="form.placeholder.password" />}
           name="password"
           component={BasicField} />
-        <Button type="submit" color="primary" block>Submit</Button>
+        <button type="submit">Submit</button>
       </Formik.Form>
     )} />
 );

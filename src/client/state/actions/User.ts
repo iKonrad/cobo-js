@@ -2,10 +2,10 @@ import TypeKeys from 'state/constants/User';
 import { createAction, Meta, ActionsUnion, UserDataState } from 'types';
 
 export const Actions = {
-  authenticate: (username: string, password: string) => createAction(
+  authenticate: (email: string, password: string) => createAction(
     TypeKeys.AUTHENTICATE,
     {
-      username,
+      email,
       password,
     },
     {

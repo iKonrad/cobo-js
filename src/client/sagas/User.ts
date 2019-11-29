@@ -5,7 +5,7 @@ import { all, call, put, takeEvery, select } from 'redux-saga/effects';
 import { State, ActionType } from 'types';
 
 export function* authenticate(action: ActionType) {
-  const response = yield call(User.Fetchers.authenticate, action.payload.username, action.payload.password);
+  const response = yield call(User.Fetchers.authenticate, action.payload.email, action.payload.password);
   if (response.sessionToken) {
     yield put(Actions.authenticateSuccess(response.sessionToken, action.meta));
   } else {

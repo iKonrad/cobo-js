@@ -2,7 +2,7 @@ import api from 'utils/ApiClient';
 import Cookies from 'utils/Cookies';
 import settings from 'settings';
 
-export const authenticate = async (username, password) => {
+export const authenticate = async (email: string, password: string) => {
   try {
     const { data } = await api.request({
       url: '/auth',
@@ -11,7 +11,7 @@ export const authenticate = async (username, password) => {
         'Accept-Language': 'pl-PL',
       },
       data: {
-        username,
+        email,
         password,
       },
     });
