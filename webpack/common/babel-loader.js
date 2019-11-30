@@ -1,26 +1,28 @@
 const presets = isServer => [
-  ['env',
+  ['@babel/env',
     {
       modules: false,
       targets: !isServer ? { browsers: ['last 2 versions'] } : {},
     },
   ],
-  'react',
-  'stage-0',
-
+  '@babel/react',
 ];
 
 const plugins = isServer => {
   const pluginsArray = [
-    'react-css-modules',
-    'transform-decorators-legacy',
-    'syntax-dynamic-import',
-    'transform-class-properties',
-    '@loadable/babel-plugin',
-    'syntax-class-properties',
+    '@babel/plugin-proposal-class-properties',
     [
-      'transform-runtime', {
-        polyfill: true,
+      '@babel/plugin-proposal-decorators', {
+        legacy: true,
+      },
+    ],
+    '@babel/plugin-syntax-class-properties',
+    '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-transform-async-to-generator',
+    '@babel/plugin-transform-modules-commonjs',
+    [
+      '@babel/plugin-transform-runtime', {
+        corejs: 2,
         regenerator: true,
       },
     ],
