@@ -1,7 +1,7 @@
 import * as React from 'react';
+import Loadable from '@loadable/component';
 import isRoleAtLeast from 'components/hoc/isRoleAtLeast';
 import onlyNotAuthenticated from 'components/hoc/onlyNotAuthenticated';
-import Loadable from 'react-loadable';
 
 // Containers
 import LogIn from 'containers/LogIn';
@@ -10,10 +10,7 @@ import Signup from 'containers/Signup';
 
 import NotFound from 'containers/NotFound';
 
-const Dashboard = Loadable({
-  loader: () => import('containers/Dashboard'),
-  loading: () => <div>Loading</div>,
-});
+const Dashboard = Loadable(() => import('containers/Dashboard'));
 
 export default [
   {
