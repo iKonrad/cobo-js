@@ -23,7 +23,7 @@ class ConnectedIntlProvider extends React.PureComponent<ProviderProps, {}> {
     const { children, app } = this.props;
 
     if (!SERVER) {
-      const areIntlLocalesSupported = require('intl-locales-supported');
+      const areIntlLocalesSupported = require('intl-locales-supported').default;
       const localesMyAppSupports = [
         'en',
         'pl',

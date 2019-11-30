@@ -14,10 +14,9 @@ interface ReactContext {
   notFound: boolean,
 }
 
-export default (scripts:string[] = [], styles:string[] = [], loadable) => async (ctx: ExtendableContext, next) => {
+export default (extractor) => async (ctx: ExtendableContext, next) => {
   const result = createStore();
   const store = result.store as Redux.Store<State>;
-
   // SSL
   // if (ctx.path === '/.well-known/acme-challenge/Mpan87VwhUEpwDN3_hvn5UMLgRtnwkHoTkpptKc9yqo') {
   //   ctx.body = 'Mpan87VwhUEpwDN3_hvn5UMLgRtnwkHoTkpptKc9yqo.tgQ9e0ZwToDk8paqSmezwbVitVxP2ChSeYxcik_O0Q0';
@@ -77,7 +76,7 @@ export default (scripts:string[] = [], styles:string[] = [], loadable) => async 
   }
 
   const context:ReactContext = { notFound: false };
-  ctx.body = renderComponentToString(ctx, store, context, scripts, styles, serverData, loadable.Capture);
+  ctx.body = renderComponentToString(ctx, store, context, extractor, serverData);
   if (context.notFound) {
     ctx.status = 404;
   }

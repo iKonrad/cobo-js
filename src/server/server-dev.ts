@@ -1,4 +1,5 @@
-// @ts-ignore
+import path from 'path';
+import { ChunkExtractor } from '@loadable/server';
 import KoaRouter from 'koa-router';
 import server from './server';
 
@@ -10,8 +11,13 @@ import server from './server';
     .use(router.routes())
     .use(router.allowedMethods());
 
+  const statsFile = path.resolve('dist/public/loadable-stats.json');
+  const extractor = new ChunkExtractor({
+    statsFile,
+    publicPath: '/',
+  });
 
-  router.get('/*', () => { console.log('???'); });
-  // router.all('/api/*', createAppHandler(stats.assets.main.js, stats.assets.main.css));
+  router.get('/*', createAppHandler(extractor));
+  router.all('/api/*', createAppHandler(extractor));
   await listen();
 })();

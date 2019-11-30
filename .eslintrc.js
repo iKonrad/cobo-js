@@ -5,7 +5,7 @@ const PATHS = require('./webpack/common/paths');
 
 module.exports = {
   extends: 'airbnb',
-  parser: 'eslint-plugin-typescript/parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2017,
     sourceType: 'module',
@@ -19,7 +19,7 @@ module.exports = {
   plugins: [
     'babel',
     'import',
-    'typescript',
+    '@typescript-eslint',
     'jsx-a11y',
     'compat',
     'jest',

@@ -31,7 +31,10 @@ interface FormValues {
 
 const LoginForm:React.FunctionComponent<Props> = props => (
   <Formik.Formik
-    initialValues={{}}
+    initialValues={{
+      email: '',
+      password: '',
+    }}
     onSubmit={async (
       { email, password }: FormValues,
       actions: Formik.FormikActions<FormValues>) => {

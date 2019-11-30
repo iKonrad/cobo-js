@@ -16,6 +16,7 @@ const plugins = isServer => {
         legacy: true,
       },
     ],
+    '@loadable/babel-plugin',
     '@babel/plugin-syntax-class-properties',
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-transform-async-to-generator',
@@ -31,7 +32,7 @@ const plugins = isServer => {
   return pluginsArray;
 };
 
-export default isServer => ([
+module.exports = isServer => ([
   {
     test: /\.[tj]sx?$/,
     exclude: /node_modules/,

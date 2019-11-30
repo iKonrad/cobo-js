@@ -1,4 +1,4 @@
-import babelLoader from './common/babel-loader';
+const babelLoader = require('./common/babel-loader');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const createCss = require('./common/css');

@@ -1,5 +1,5 @@
-import babelLoader from './common/babel-loader';
-import Paths from './common/paths';
+const babelLoader = require('./common/babel-loader');
+const paths = require('./common/paths');
 
 const webpack = require('webpack');
 const merge = require('webpack-merge');

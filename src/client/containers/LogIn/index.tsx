@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Loadable from '@loadable/component';
+import loadable from '@loadable/component';
 import Empty from 'templates/Empty';
 import LoadingComponent from 'components/loading/LoadingComponent';
 import { Card, CardBody } from 'components/ui/Card';
 import { Container, Row, Col } from 'reactstrap';
 
-const LoginForm = Loadable(() => import('components/forms/LoginForm'));
+const LoginForm = loadable(() => import('components/forms/LoginForm'));
 
 const LogIn: React.FunctionComponent<{}> = () => (
   <Empty>

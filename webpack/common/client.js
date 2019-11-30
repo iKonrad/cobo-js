@@ -1,10 +1,9 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const baseConfig = require('./base');
 const paths = require('./paths');
-const EntryChunksPlugin = require('./plugins/chunksPlugin');
 const HashedChunkidsPlugin = require('webpack-hashed-chunkids');
 
 module.exports = function (isProduction) {
@@ -22,20 +21,13 @@ module.exports = function (isProduction) {
 
     // Global variables
     plugins: [
-      new ReactLoadablePlugin({
-        filename: `${paths.exported}/modules.json`,
-      }),
+      new LoadablePlugin(),
       new HashedChunkidsPlugin({ // So the chunk IDs don't change with each compilation
         hashFunction: 'md5',
         hashDigest: 'hex',
         hashDigestLength: 4,
       }),
       new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
-      new EntryChunksPlugin({
-        filename: 'webpack.stats.json',
-        path: paths.exported,
-        publicPath: paths.public,
-      }),
       new CopyWebpackPlugin([
         {
           from: paths.static,

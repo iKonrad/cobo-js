@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const LoadablePlugin = require('@loadable/webpack-plugin');
 const webpackNodeExternals = require('webpack-node-externals');
 const baseConfig = require('./base');
 const paths = require('./paths');
@@ -22,7 +21,6 @@ const serverConfig = {
     webpackNodeExternals(),
   ],
   plugins: [
-    new LoadablePlugin(),
     new webpack.DefinePlugin({
       // We're not running on the server
       SERVER: true,

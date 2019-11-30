@@ -12,13 +12,15 @@ interface OwnProps {
 
 interface FormValues {
   email: string,
-  username: string,
   password: string,
 }
 
 const SignupForm:React.FunctionComponent<OwnProps> = props => (
   <Formik.Formik
-    initialValues={{}}
+    initialValues={{
+      email: '',
+      password: '',
+    }}
     onSubmit={async (
       data: FormValues,
       actions: Formik.FormikActions<FormValues>,

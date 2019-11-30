@@ -25,8 +25,6 @@ const renderField: React.FunctionComponent<Props> = ({
     'form-group-invalid': hasError,
   });
 
-  console.log('errors', form.errors);
-
   return (
     <FormGroup className={rowClasses}>
       <Label for={field.name}>{label}</Label>
